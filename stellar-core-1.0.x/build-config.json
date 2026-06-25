@@ -1,0 +1,193 @@
+{
+  "env": {
+    "UNIV3_FACTORY": "0x1F98431c8aD98523631AE4a59f267346ea31F984"
+  },
+  "dataContracts": [
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 0
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 0
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 0
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 0
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 0
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 0
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 0
+    }
+  ],
+  "logicContracts": {
+    "FeesCalc": {
+      "path": "./contracts/libraries/FeesCalc.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 0
+      },
+      "optimizeRuns": 9999999
+    },
+    "StellarMath": {
+      "path": "./contracts/libraries/StellarMath.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 0
+      },
+      "optimizeRuns": 9999999
+    },
+    "PositionBalanceLibrary": {
+      "path": "./contracts/types/PositionBalance.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 0
+      },
+      "optimizeRuns": 9999999
+    },
+    "InteractionHelper": {
+      "path": "./contracts/libraries/InteractionHelper.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 0
+      },
+      "optimizeRuns": 9999999,
+      "links": [
+        "StellarMath"
+      ]
+    },
+    "CollateralTracker": {
+      "path": "./contracts/CollateralTracker.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 0
+      },
+      "constructorArgs": [
+        [
+          20,
+          2000,
+          1000,
+          -128,
+          5000,
+          9000,
+          20000
+        ],
+        [
+          "uint256",
+          "uint256",
+          "uint256",
+          "int256",
+          "uint256",
+          "uint256",
+          "uint256"
+        ]
+      ],
+      "optimizeRuns": 9999999,
+      "links": [
+        "InteractionHelper"
+      ]
+    },
+    "StellarFactory": {
+      "path": "./contracts/StellarFactory.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 29
+      },
+      "optimizeRuns": 9999999,
+      "links": [
+        "StellarMath"
+      ],
+      "constructorArgs": [
+        [
+          "@SemiFungiblePositionManager",
+          "$UNIV3_FACTORY",
+          "@StellarPool",
+          "@CollateralTracker",
+          "$MD_PROPERTIES",
+          "$MD_INDICES",
+          "$MD_POINTERS"
+        ],
+        [
+          "address",
+          "address",
+          "address",
+          "address",
+          "bytes32[]",
+          "uint256[][]",
+          "uint256[][]"
+        ]
+      ]
+    },
+    "StellarPool": {
+      "path": "./contracts/StellarPool.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 0
+      },
+      "optimizeRuns": 833,
+      "links": [
+        "InteractionHelper",
+        "StellarMath",
+        "PositionBalanceLibrary"
+      ],
+      "constructorArgs": [
+        [
+          "@SemiFungiblePositionManager"
+        ],
+        [
+          "address"
+        ]
+      ]
+    },
+    "SemiFungiblePositionManager": {
+      "path": "./contracts/SemiFungiblePositionManager.sol",
+      "deployment": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 4
+      },
+      "optimizeRuns": 27899,
+      "links": [
+        "FeesCalc"
+      ],
+      "constructorArgs": [
+        [
+          "$UNIV3_FACTORY",
+          2100000000000000000000,
+          10000
+        ],
+        [
+          "address",
+          "uint256",
+          "uint256"
+        ]
+      ]
+    }
+  }
+}
